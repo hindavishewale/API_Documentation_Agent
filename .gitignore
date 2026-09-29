@@ -2,6 +2,8 @@
 *.db
 __pycache__/
 .pytest_cache/
-.streamlit/
+.streamlit/secrets.toml
 outputs/*
-!.gitkeep
+!outputs/.gitkeep
+*.pyc
+.DS_Store

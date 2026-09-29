@@ -14,8 +14,20 @@ from tools.toolkit import map_changes_to_docs, self_heal_documentation
 load_dotenv()
 
 
+def _get_gemini_key() -> str | None:
+    """Load GEMINI_API_KEY from st.secrets (Streamlit Cloud) or .env (local)."""
+    try:
+        import streamlit as st
+        key = st.secrets.get("GEMINI_API_KEY")
+        if key:
+            return key
+    except Exception:
+        pass
+    return os.getenv("GEMINI_API_KEY")
+
+
 def _gemini_explain(prompt: str) -> str | None:
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = _get_gemini_key()
     if not api_key:
         return None
     try:
