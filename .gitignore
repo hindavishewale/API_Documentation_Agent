@@ -7,3 +7,5 @@ outputs/*
 !outputs/.gitkeep
 *.pyc
 .DS_Store
+
+.venv/
